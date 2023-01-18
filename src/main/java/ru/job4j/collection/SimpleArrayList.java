@@ -17,7 +17,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity];
     }
-    public void grow() {
+    private void grow() {
         if (size == 0) {
             container = Arrays.copyOf(container, 10);
         } else {
@@ -46,7 +46,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T remove(int index) {
-        Objects.checkIndex(index, container.length);
         T removeValue = get(index);
         System.arraycopy(
                 container,
@@ -64,9 +63,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public T get(int index) {
         Objects.checkIndex(index, size);
-        if (index < 0 || index >= container.length) {
-            throw new IndexOutOfBoundsException();
-        }
         return container[index];
     }
 
