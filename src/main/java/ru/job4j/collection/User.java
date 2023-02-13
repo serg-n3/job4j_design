@@ -3,6 +3,8 @@ package ru.job4j.collection;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
 public class User {
     private String name;
     private int children;
@@ -12,6 +14,23 @@ public class User {
         this.name = name;
         this.children = children;
         this.birthday = birthday;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
     }
 
     public static void main(String[] args) {
@@ -27,6 +46,8 @@ public class User {
         int bucket2 = hash2 & 15;
         map.put(user1, new Object());
         map.put(user2, new Object());
+        System.out.println(user1.equals(user2));
+        System.out.println(map.size());
         System.out.printf("user1 - hashcode : %s, hash : %s, bucket : %s", hashcode1, hash1, bucket1);
         System.out.println();
         System.out.printf("user2 - hashcode : %s, hash : %s, bucket : %s", hashcode2, hash2, bucket2);
