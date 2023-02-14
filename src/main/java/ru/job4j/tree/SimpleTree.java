@@ -1,6 +1,7 @@
 package ru.job4j.tree;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class SimpleTree<E> implements Tree<E> {
     private final Node<E> root;
@@ -12,7 +13,7 @@ public class SimpleTree<E> implements Tree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
-         Optional<Node<E>> par = findBy(parent);
+        Optional<Node<E>> par = findBy(parent);
         if (par.isPresent() && findBy(child).isEmpty()) {
             par.get().children.add(new Node<E>(child));
             rsl = true;
@@ -20,14 +21,13 @@ public class SimpleTree<E> implements Tree<E> {
         return rsl;
     }
 
-    @Override
-    public Optional<Node<E>> findBy(E value) {
+    private Optional<Node<E>> findByPredicate(Predicate<Node<E>> condition) {
         Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
-            if (el.value.equals(value)) {
+            if (condition.test(el)) {
                 rsl = Optional.of(el);
                 break;
             }
@@ -35,4 +35,15 @@ public class SimpleTree<E> implements Tree<E> {
         }
         return rsl;
     }
+    @Override
+    public boolean isBinary() {
+        return findByPredicate(el -> el.children.size() > 2).isEmpty();
+    }
+
+
+    @Override
+    public Optional<Node<E>> findBy(E value) {
+        return findByPredicate(el -> el.value.equals(value));
+    }
 }
+
