@@ -10,7 +10,7 @@ public class LogFilter {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 String[] lineSplit = line.split(" ");
-                if (lineSplit[lineSplit.length - 2].equals("404")) {
+                if ("404".equals(lineSplit[lineSplit.length - 2])) {
                     list.add(line);
                 }
             }
@@ -23,7 +23,9 @@ public class LogFilter {
     public static void main(String[] args) {
         LogFilter logFilter = new LogFilter();
         List<String> log = logFilter.filter("data/log.txt");
-        System.out.println(log);
+        for (String lg : log) {
+            System.out.println(lg);
+        }
 
     }
 }
