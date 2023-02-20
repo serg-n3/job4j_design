@@ -14,7 +14,7 @@ public class LogFilter {
                     list.add(line);
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return list;
