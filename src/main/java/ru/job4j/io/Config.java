@@ -18,7 +18,10 @@ public class Config {
                 if (line.isEmpty() || line.startsWith("#")) {
                     continue;
                 }
-                if (line.length() == 1 || !line.contains("=")) {
+                if (line.length() == 1
+                        || !line.contains("=")
+                        || line.startsWith("=")
+                        || line.endsWith("=")) {
                     throw new IllegalArgumentException();
                 }
                 String[] res = line.split("=", 2);
@@ -37,11 +40,11 @@ public class Config {
     public String toString() {
         StringJoiner out = new StringJoiner(System.lineSeparator());
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-       read.lines().forEach(out::add);
+            read.lines().forEach(out::add);
         } catch (IOException e) {
             e.printStackTrace();
-    }
-    return out.toString();
+        }
+        return out.toString();
     }
 
     public static void main(String[] args) {
