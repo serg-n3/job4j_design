@@ -9,7 +9,6 @@ public class Analysis {
             boolean flag = true;
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 String[] res = line.split(" ");
-                //System.out.println(res[0]);
                 if (flag && ("500".equals(res[0]) || "400".equals(res[0]))) {
                     out.append(res[1]).append("; ");
                     flag = false;
@@ -21,7 +20,6 @@ public class Analysis {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
     public static void main(String[] args) {
         Analysis analysis = new Analysis();
