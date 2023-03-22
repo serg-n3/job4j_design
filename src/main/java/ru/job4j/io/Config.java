@@ -26,10 +26,12 @@ public class Config {
                 }
                 String[] res = line.split("=", 2);
                 values.put(res[0], res[1]);
+                System.out.println(values);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public String value(String key) {
@@ -49,6 +51,7 @@ public class Config {
 
     public static void main(String[] args) {
         System.out.println(new Config("data/app.properties"));
+        //System.out.println(va);
     }
 
 }
