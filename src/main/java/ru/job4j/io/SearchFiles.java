@@ -32,7 +32,6 @@ public class SearchFiles implements FileVisitor<Path> {
         return CONTINUE;
     }
 
-
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         if (condition.test(file)) {
