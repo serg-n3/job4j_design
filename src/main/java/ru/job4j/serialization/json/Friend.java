@@ -17,6 +17,26 @@ public class Friend {
         this.otherFriends = otherFriends;
     }
 
+    public boolean isHaveHome() {
+        return haveHome;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public String[] getOtherFriends() {
+        return otherFriends;
+    }
+
     @Override
     public String toString() {
         return "Person{"
