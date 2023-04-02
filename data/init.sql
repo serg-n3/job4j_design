@@ -1,3 +1,2 @@
-
 CREATE database less;
 
