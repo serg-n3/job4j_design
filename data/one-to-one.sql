@@ -8,7 +8,8 @@ create table users(
 
 create table users_bio(
     id serial primary key,    
-  	bio text
+  	bio text,
+  	id_users integer references users(id)
 );
 
 insert into users(first_name, last_name, age) values ('Ivan','Ivanov', 20);

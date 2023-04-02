@@ -28,8 +28,8 @@ VALUES
     (9, 'Анастасия', 'Дейчман'),
     (10, 'Александр', 'Дмитриев');
 CREATE TABLE users_roles (
-    user_id INTEGER ,
-    role_id INTEGER 
+    user_id INTEGER references users(id),
+    role_id INTEGER references roles(id)
 );
 INSERT INTO users_roles (user_id, role_id)
 VALUES

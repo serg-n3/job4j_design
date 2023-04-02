@@ -12,8 +12,8 @@ create table books (
     id serial primary key,
     name text,
     price integer,
-    category_id integer ,
-    author_id integer 
+    category_id integer references categories(id),
+    author_id integer references authors(id)
 );
 INSERT INTO categories (id, name)
 VALUES
