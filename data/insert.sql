@@ -21,14 +21,14 @@ values
 (3, 'заявка-3',2,3,1),
 (4, 'заявка-4',3,3,3);
 
-insert into comments(id, name_comment, id_user)
+insert into comments(id, name_comment, id_item)
 values
 (1, 'коммент-1',1),
 (2, 'коммент-2',2),
 (3, 'коммент-3',3),
 (4, 'коммент-4',1);
 
-insert into attachs(id, name_attachs, id_user)
+insert into attachs(id, name_attachs, id_item)
 values
 (1, 'файл-1',1),
 (2, 'файл-2',2),
