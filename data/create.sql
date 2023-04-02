@@ -52,4 +52,3 @@ create table rol_rul    (
 	id_rules integer references rules(id)
 );
 
-
