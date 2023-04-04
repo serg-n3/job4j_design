@@ -15,7 +15,7 @@ values
 (4,'Сыр шоколадный',2,'2023-05-25',432),
 (5, 'Домик в деревне', 1,'2023-06-22',278),
 (6,'Петмол',1,'2023-06-11',345),
-(7,'Простоквашино',1,'2023-06-12',100),
+(7,'Простоквашино',1,'2023-06-12',600),
 (8,'Латона',1,'2023-06-05',128),
 (9,'мороженое эскимо',3,'2023-06-11',125),
 (10,'мороженое стаканчик',3,'2023-06-12',110),
@@ -39,7 +39,7 @@ where t.id=2;
 
 select p.id, p.name, p.type_id, p.expired_date, p.price
 from product p
-join type t on p.type_id=t.id
+type t on p.type_id=t.id
 where p.name like '%мороженое%';
 
 select p.id, p.name, p.type_id, p.expired_date, p.price
@@ -47,11 +47,11 @@ from product p
 join type t on p.type_id=t.id
 where p.expired_date<now();
 
-select name, max(price)
+select name, max(price) as pr
 from product
-group by name
-order by max(price) desc
-limit 1;
+where price = (select max(price) from product)
+group by name;
+
 
 select t.name, count(p.name)
 from product p
