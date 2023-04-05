@@ -5,7 +5,7 @@ $$
     BEGIN
         update products
         set price = price + price * 0.1
-	where id = (select id from inserted);
+	where id = new.id; 
         return new;
     END;
 $$
@@ -14,7 +14,7 @@ LANGUAGE 'plpgsql';
 create trigger tax_t
     before insert on products
     referencing new table as inserted
-    for each statement
+    for each row 
     execute procedure tax();
 	
 	
@@ -24,7 +24,7 @@ $$
     BEGIN		
         update products
         set price = price + price * 0.1
-		where id = new.id;
+		where id = (select id from inserted);
         return NEW;
     END;
 $$
@@ -33,7 +33,7 @@ LANGUAGE 'plpgsql';
 create trigger tax_row_trigger
     after insert
     on products
-    for each row
+    for each statement
     execute procedure tax_row();
 	
 	
