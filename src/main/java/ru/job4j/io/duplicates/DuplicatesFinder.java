@@ -18,5 +18,4 @@ public class DuplicatesFinder {
         Files.walkFileTree(root, searcher);
         return searcher.getPaths();
     }*/
-
 }
