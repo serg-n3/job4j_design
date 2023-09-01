@@ -23,11 +23,10 @@ public class ImportDB {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(line -> {
-                if (line.split(";").length == 2) {
-                    users.add(new User(line.split(";")[0], line.split(";")[1]));
-                } else {
+                if (line.split(";").length != 2) {
                     throw new IllegalArgumentException("Not valid argument");
                 }
+                users.add(new User(line.split(";")[0], line.split(";")[1]));
             });
         }
         return users;
